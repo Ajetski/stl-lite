@@ -142,6 +142,51 @@ void runTests()
    for (std::size_t idx = 0; idx < m.size() && swapTest; idx++)
       swapTest = m[idx] == mExpected[idx] && n[idx] == nExpected[idx];
    assert(swapTest, "m.swap(n)");
+
+
+   //comparison operators
+   array<int, 2> g{2, 3};
+   array<int, 2> l{1, 2};
+   array<int, 2> e1{2, 2};
+   array<int, 2> e2{2, 2};
+   
+   //inequality
+   assert(g != l, "g != l");
+   assert(g != e1, "g != e1");
+   assert(l != e1, "l != e1");
+   assert(!(e1 != e2), "!(e1 != e2)");
+
+   //equality
+   assert(e1 == e2 , "e1 == e2");
+   assert(!( l == g), "!( l == g)");
+   assert(!( e2 == g), "!( e2 == g)");
+   
+   //less than
+   assert(l < g, "l < g");
+   assert(e2 < g, "e2 < g");
+   assert(l < e1, "l < e1");
+   assert(!(e2 < e1), "!( e2 < e1)");
+   assert(!( g < l), "!( g < l)");
+
+   //greater than
+   assert(g > l, "g > l");
+   assert( e2 > l, "e2 > l");
+   assert(!( e2 > e1),"!( e2 > e1)");
+   assert(!(l > g), "!( l > g)");
+
+   //less than or equal to
+   assert(l <= g, "l <= g");
+   assert(l <= e1, "l <= e1");
+   assert(e1 <= e2, "e1 <= e2");
+   assert(e2 <= e1, "e2 <= e1");
+   assert(!( g <= l), "!( g <= l)");
+
+   //greater than or equal to
+   assert(g >= e1, "g >= e1");
+   assert(g >= l, "g >= l");
+   assert(e1 >= e2, "e1 >= e2");
+   assert(e2 >= e1, "e2 >= e1");
+   assert(!( l >= e1), "!( l >= e1)");
 }
 
 
