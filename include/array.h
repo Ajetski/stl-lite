@@ -178,6 +178,65 @@ namespace sigcpp
 
 	}; //template array
 
+	//comparison operators
+	template< typename T, std::size_t N >
+	constexpr bool operator==(const array<T, N>& lhs, const array<T, N>& rhs)
+	{
+		for (size_t index = 0; index < N; ++index) {
+			if (lhs[index] != rhs[index]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	template< typename T, std::size_t N >
+	constexpr bool operator!=(const array<T, N>& lhs, const array<T, N>& rhs)
+	{
+		return !(rhs == lhs);
+	}
+
+	template< typename T, std::size_t N >
+	constexpr bool operator>(const array<T, N>& lhs, const array<T, N>& rhs)
+	{
+		for(size_t index = 0; index < N; ++index){
+			if (lhs[index] > rhs[index]) {
+				return true;
+			}
+			if (lhs[index] < rhs[index]) {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	template<typename T, std::size_t N>
+	constexpr bool operator<(const array<T, N>& lhs, const array<T, N>& rhs)
+	{
+		for (size_t index = 0; index < N; ++index) {
+			if (lhs[index] < rhs[index]) {
+				return true;
+			}
+			if (lhs[index] > rhs[index]) {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	template<typename T, std::size_t N>
+	constexpr bool operator<=(const array<T, N>& lhs, const array<T, N>& rhs)
+	{
+		return lhs < rhs || lhs == rhs;	
+	}
+
+	template<typename T, std::size_t N>
+	constexpr bool operator>=(const array<T, N>& lhs, const array<T, N>& rhs)
+	{
+		return lhs > rhs || lhs == rhs;
+	}
+
+
 }	//namespace sigcpp
 
 #endif
